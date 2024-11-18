@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <div class="bg_pattern Wavy"></div>
+<head>
+    
+    <!-- ⑥↓タイトルを変えてみよう -->
+    <title></title>
+    <!-- ⑤スタイルシートの設定をしよう -->
+     <title>第5回</title>
+    <!-- h1.htmlからある行をコピペしてくればOK --><link rel="stylesheet" href="./css/photo.css">
+    
+<body>
+</head>
+
+<body>
+    <h1>★毎朝７時に"パワーワード"が表示される🌤★</h1><br>
+    毎朝表示される名言やパワフルなフレーズから元気をもらえたり、やる気が出るようなプログラムを作ってみた。</h4>
+
+    <h3>ーソースコードー</h3>
+    <pre><code>
+        import requests
+        import schedule
+        import time
+        
+        def get_daily_power_word():
+            """ZenQuotes APIから名言を取得する関数"""
+            url = "https://zenquotes.io/api/today"
+            response = requests.get(url)
+            
+            if response.status_code == 200:
+                # JSONデータを取得
+                data = response.json()
+                if data:
+                    quote = data[0]['q']
+                    author = data[0]['a']
+                    return f"今日のパワーワード: \"{quote}\" - {author}"
+                else:
+                    return "今日は名言が取得できませんでした。"
+            else:
+                return "APIの呼び出しに失敗しました。"
+        
+        def show_power_word():
+            """毎朝7時に名言を表示する関数"""
+            print(get_daily_power_word())
+        
+        # 毎日7時に名言を表示
+        schedule.every().day.at("07:00").do(show_power_word)
+        
+        print("スクリプトが開始されました。毎朝7時に名言を表示します。")
+        
+        # スケジュールの実行
+        while True:
+            schedule.run_pending()  # 実行すべきタスクを待機して実行
+            time.sleep(60)  # 1分ごとに次のタスクがあるか確認
+        
+        
+</body>
+<body>
+    <br>
+    <a href="python/meigen.py" target="_blank">ソースコードのダウンロードはこちら</a><br>
+    <br>
+    <br>
+   <h3>-参考元-<br></h3>
+    <a href="https://note.com/python_app/n/nbdccd1cb3bb3"target="_blank">python簡易データベースアプリを作ろう</a>
+    websiteとchatgptを参考にして作りました。
+    
+    </a>
+    
+</body>
+
+
+    
+    
+    
+       
+   
